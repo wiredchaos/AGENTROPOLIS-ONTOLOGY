@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agentropolis.dev/schemas/capital.schema.json",
+  "title": "Capital",
+  "description": "Capital object used by the Agentropolis Economic Ontology.",
+  "type": "object",
+  "required": ["id", "name", "capital_type"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-_]*$" },
+    "name": { "type": "string", "minLength": 1 },
+    "capital_type": {
+      "type": "string",
+      "enum": ["human", "social", "built", "natural", "compute", "data", "agent", "financial"]
+    },
+    "description": { "type": "string" },
+    "owner_ref": { "type": "string" },
+    "district_ref": { "type": "string" },
+    "quantity": { "type": "number", "minimum": 0 },
+    "unit": { "type": "string" },
+    "quality_score": { "type": "number", "minimum": 0, "maximum": 1 },
+    "trust_score": { "type": "number", "minimum": 0, "maximum": 1 },
+    "renewal_rate": { "type": "number", "minimum": 0 },
+    "depletion_rate": { "type": "number", "minimum": 0 },
+    "metadata": { "type": "object" }
+  }
+}
