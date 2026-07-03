@@ -1,0 +1,37 @@
+{
+  "id": "civic-operations",
+  "name": "Civic Operations District",
+  "purpose": "Coordinates governed operational workflows for public-facing service requests.",
+  "description": "A sample district showing how governance, workflow, and audit references can be grouped without assuming a specific vendor runtime.",
+  "stewards": [
+    "operations-council",
+    "risk-office"
+  ],
+  "agentRefs": [
+    "request-triage-agent"
+  ],
+  "skillRefs": [
+    "classify-request",
+    "route-request"
+  ],
+  "policyRefs": [
+    "baseline-security-policy"
+  ],
+  "workflowRefs": [
+    "request-triage-workflow"
+  ],
+  "registryRefs": [
+    "capability-registry"
+  ],
+  "auditRefs": [
+    "quarterly-governance-review"
+  ],
+  "eventChannels": [
+    "district.civic-operations.audit"
+  ],
+  "security": {
+    "dataClassification": "internal",
+    "requiresHumanApproval": true,
+    "logRetentionDays": 365
+  }
+}

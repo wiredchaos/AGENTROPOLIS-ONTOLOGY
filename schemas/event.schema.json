@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/agentropolis-ontology/schemas/event.schema.json",
+  "title": "Event",
+  "description": "An observable event produced by an agent, workflow, or governance system.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "type",
+    "sourceRef",
+    "timestamp",
+    "severity",
+    "payloadClass"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]{1,63}$"
+    },
+    "type": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 150
+    },
+    "sourceRef": {
+      "type": "string"
+    },
+    "workflowRef": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "info",
+        "warning",
+        "error",
+        "critical"
+      ]
+    },
+    "payloadClass": {
+      "type": "string",
+      "enum": [
+        "metadata-only",
+        "redacted",
+        "sensitive-reference"
+      ]
+    },
+    "summary": {
+      "type": "string",
+      "maxLength": 1000
+    },
+    "extensions": {
+      "type": "object"
+    }
+  }
+}

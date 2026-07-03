@@ -1,0 +1,35 @@
+{
+  "id": "request-triage-agent",
+  "name": "Request Triage Agent",
+  "districtRef": "civic-operations",
+  "role": "Classifies incoming service requests and proposes routing actions.",
+  "description": "A sample agent definition that references a district, memory profile, policies, and constrained permissions.",
+  "status": "active",
+  "skillRefs": [
+    "classify-request",
+    "route-request"
+  ],
+  "memoryRef": "triage-memory",
+  "policyRefs": [
+    "baseline-security-policy"
+  ],
+  "workflowRefs": [
+    "request-triage-workflow"
+  ],
+  "permissions": {
+    "effect": "least-privilege",
+    "scopes": [
+      "requests:read",
+      "requests:classify",
+      "routes:suggest"
+    ]
+  },
+  "security": {
+    "handlesSensitiveData": false,
+    "requiresHumanApproval": true,
+    "eventChannel": "district.civic-operations.audit"
+  },
+  "owners": [
+    "operations-council"
+  ]
+}

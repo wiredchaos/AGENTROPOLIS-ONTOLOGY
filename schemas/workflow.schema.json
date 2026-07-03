@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/agentropolis-ontology/schemas/workflow.schema.json",
+  "title": "Workflow",
+  "description": "An ordered process involving agents, skills, and governance checkpoints.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "name",
+    "trigger",
+    "steps",
+    "failureMode"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]{1,63}$"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 150
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 4000
+    },
+    "trigger": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 200
+    },
+    "steps": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "kind",
+          "ref"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9-]{1,63}$"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "agent",
+              "skill",
+              "approval",
+              "event"
+            ]
+          },
+          "ref": {
+            "type": "string"
+          },
+          "onFailure": {
+            "type": "string",
+            "enum": [
+              "stop",
+              "retry",
+              "escalate"
+            ]
+          }
+        }
+      }
+    },
+    "failureMode": {
+      "type": "string",
+      "enum": [
+        "stop",
+        "retry",
+        "escalate"
+      ]
+    },
+    "policyRefs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "extensions": {
+      "type": "object"
+    }
+  }
+}
