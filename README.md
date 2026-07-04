@@ -19,6 +19,7 @@ AGENTROPOLIS-ONTOLOGY defines the public operating model for city-scale AI coord
 - Audit ontology
 - Economic ontology
 - Convergence-risk ontology
+- Coding-agent infrastructure notes
 
 ## Economic ontology
 
@@ -35,6 +36,14 @@ Agentropolis must optimize for contextual correctness, not answer consistency al
 The convergence-risk layer defines checks for repeated outputs, stale assumptions, context mismatch, validation gaps, and workflow convergence.
 
 See [`docs/convergence-risk.md`](docs/convergence-risk.md).
+
+## Morph infrastructure note
+
+Morph is a coding-agent infrastructure lane, not a separate Agentropolis repo yet.
+
+It applies where coding-agent infrastructure improves schema maintenance, documentation updates, dynamic HTML documentation, examples, and cross-repo consistency without becoming the ontology itself.
+
+See [`docs/morph-blog-intel.md`](docs/morph-blog-intel.md).
 
 ## Public safety boundary
 
