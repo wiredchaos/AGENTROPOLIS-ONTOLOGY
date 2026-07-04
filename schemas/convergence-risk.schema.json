@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agentropolis.dev/schemas/convergence-risk.schema.json",
+  "title": "Convergence Risk",
+  "description": "An ontology object for tracking repeated outputs, stale assumptions, context mismatch, metric gaming, and workflow convergence.",
+  "type": "object",
+  "required": ["id", "risk_type", "severity", "scope", "mitigation"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "type": "string" },
+    "risk_type": {
+      "type": "string",
+      "enum": ["repeated_answer", "context_mismatch", "memory_quality_issue", "stale_assumption", "metric_gaming", "workflow_convergence", "validation_gap", "low_output_variety"]
+    },
+    "severity": { "type": "string", "enum": ["low", "medium", "high", "critical"] },
+    "scope": { "type": "string" },
+    "evidence": { "type": "array", "items": { "type": "string" } },
+    "affected_refs": { "type": "array", "items": { "type": "string" } },
+    "repeated_output_rate": { "type": "number", "minimum": 0, "maximum": 1 },
+    "context_diversity_score": { "type": "number", "minimum": 0, "maximum": 1 },
+    "human_review_required": { "type": "boolean", "default": true },
+    "mitigation": { "type": "string" },
+    "status": { "type": "string", "enum": ["open", "monitoring", "mitigated", "accepted", "archived"] },
+    "created_at": { "type": "string", "format": "date-time" },
+    "metadata": { "type": "object" }
+  }
+}
