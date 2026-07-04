@@ -1,10 +1,10 @@
 # AGENTROPOLIS-ONTOLOGY
 
-Open ontology for Agentropolis: districts, agents, skills, memory, policies, workflows, permissions, events, registries, audit models, and economic growth loops for governed AI ecosystems.
+Open ontology for Agentropolis: districts, agents, skills, memory, policies, workflows, permissions, events, registries, audit models, economic growth loops, and convergence-risk controls for governed AI ecosystems.
 
 ## Purpose
 
-AGENTROPOLIS-ONTOLOGY defines the public operating model for city-scale AI coordination. It provides vendor-neutral schemas and documentation for modeling agents, districts, value creation, capital flows, governance, trust, and auditability.
+AGENTROPOLIS-ONTOLOGY defines the public operating model for city-scale AI coordination. It provides vendor-neutral schemas and documentation for modeling agents, districts, value creation, capital flows, governance, trust, auditability, and convergence-risk detection.
 
 ## Core layers
 
@@ -18,6 +18,7 @@ AGENTROPOLIS-ONTOLOGY defines the public operating model for city-scale AI coord
 - Permission ontology
 - Audit ontology
 - Economic ontology
+- Convergence-risk ontology
 
 ## Economic ontology
 
@@ -26,6 +27,14 @@ The economic layer extends classical and neoclassical growth concepts into an AI
 Traditional growth models emphasize labor, capital, and technology. Agentropolis adds coordination, ontology, governance, trusted execution, data quality, compute, and agent capital as explicit growth drivers.
 
 See [`docs/economic-ontology.md`](docs/economic-ontology.md).
+
+## Convergence risk
+
+Agentropolis must optimize for contextual correctness, not answer consistency alone.
+
+The convergence-risk layer defines checks for repeated outputs, stale assumptions, context mismatch, validation gaps, and workflow convergence.
+
+See [`docs/convergence-risk.md`](docs/convergence-risk.md).
 
 ## Public safety boundary
 
