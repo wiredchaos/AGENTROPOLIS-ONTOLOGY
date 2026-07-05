@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agentropolis.local/schemas/source.schema.json",
+  "title": "Agentropolis Source",
+  "type": "object",
+  "required": ["id", "title", "source_type", "immutability", "captured_at", "custodian"],
+  "properties": {
+    "id": { "type": "string" },
+    "title": { "type": "string" },
+    "source_type": {
+      "type": "string",
+      "enum": ["document", "screenshot", "transcript", "url", "dataset", "filing", "note", "artifact", "other"]
+    },
+    "location": { "type": "string" },
+    "hash": { "type": "string" },
+    "immutability": {
+      "type": "string",
+      "enum": ["immutable", "corrected_by_new_source"]
+    },
+    "captured_at": { "type": "string" },
+    "custodian": { "type": "string" },
+    "claims": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "related_entities": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "receipt_id": { "type": "string" }
+  },
+  "additionalProperties": false
+}
