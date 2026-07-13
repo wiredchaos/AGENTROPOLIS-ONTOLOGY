@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agentropolis.example/schemas/regulated-digital-money-v1.schema.json",
+  "title": "Agentropolis Regulated Digital Money v1",
+  "type": "object",
+  "required": ["ontologyVersion", "paymentIntent", "capability"],
+  "properties": {
+    "ontologyVersion": {
+      "const": "agentropolis.regulated-digital-money.v1"
+    },
+    "paymentIntent": {
+      "type": "object",
+      "required": [
+        "id",
+        "requestedBy",
+        "assetClass",
+        "amount",
+        "currency",
+        "recipient",
+        "jurisdiction",
+        "purpose",
+        "idempotencyKey"
+      ],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "requestedBy": { "type": "string", "minLength": 1 },
+        "assetClass": {
+          "enum": [
+            "fiat_bank_deposit",
+            "tokenized_bank_deposit",
+            "regulated_stablecoin",
+            "cryptoasset",
+            "closed_loop_credit",
+            "tokenized_security",
+            "tokenized_rwa"
+          ]
+        },
+        "amount": { "type": "string", "pattern": "^[0-9]+(\\.[0-9]{1,18})?$" },
+        "currency": { "type": "string", "minLength": 2 },
+        "recipient": { "type": "string", "minLength": 1 },
+        "jurisdiction": { "type": "string", "minLength": 2 },
+        "purpose": { "type": "string", "minLength": 1 },
+        "allowedRails": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "ach",
+              "wire",
+              "card",
+              "base_usdc",
+              "xrpl_xrp",
+              "xrpl_rlusd",
+              "tokenized_deposit_network"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "maximumFee": { "type": "string", "pattern": "^[0-9]+(\\.[0-9]{1,18})?$" },
+        "requiresHumanApproval": { "type": "boolean" },
+        "idempotencyKey": { "type": "string", "minLength": 8 }
+      },
+      "additionalProperties": false
+    },
+    "capability": {
+      "type": "object",
+      "required": ["status"],
+      "properties": {
+        "status": {
+          "enum": ["disabled", "sandbox", "restricted_live", "production"]
+        },
+        "providerId": { "type": "string" },
+        "supportedRails": {
+          "type": "array",
+          "items": { "type": "string" },
+          "uniqueItems": true
+        },
+        "legalReviewComplete": { "type": "boolean", "default": false },
+        "moneyTransmissionReviewComplete": { "type": "boolean", "default": false },
+        "custodyRoleDefined": { "type": "boolean", "default": false },
+        "complianceControlsOperational": { "type": "boolean", "default": false },
+        "reconciliationTested": { "type": "boolean", "default": false },
+        "incidentResponseTested": { "type": "boolean", "default": false }
+      },
+      "additionalProperties": false
+    },
+    "policyDecision": {
+      "type": "object",
+      "required": ["outcome", "reasonCode"],
+      "properties": {
+        "outcome": {
+          "enum": [
+            "allow_simulation",
+            "require_human_approval",
+            "allow_restricted_live",
+            "deny"
+          ]
+        },
+        "reasonCode": { "type": "string", "minLength": 1 },
+        "humanApprovalId": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
