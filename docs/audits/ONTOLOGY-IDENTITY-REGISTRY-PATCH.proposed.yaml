@@ -1,0 +1,163 @@
+# PROPOSED PATCH ONLY — DO NOT AUTO-APPLY
+#
+# Target file (external repo):
+#   wiredchaos/agentropolis/governance/repository-registry.yaml
+#
+# Purpose:
+#   Record AGENTROPOLIS-ONTOLOGY identity-authority audit outcome without
+#   declaring ONTOLOGY the canonical identity authority or a completed
+#   identity-entity schema home.
+#
+# Evidence:
+#   wiredchaos/AGENTROPOLIS-ONTOLOGY@4b518f5a2b5bdc83559e198ec32c317ef989c088
+#   docs/audits/ONTOLOGY-IDENTITY-EVIDENCE-AUDIT.md
+#   governance/ontology-identity-evidence.yaml
+#
+# Assembly rule:
+#   Do not treat ATG PR #8 (or this PR alone) as the final registry decision.
+#   Assemble a cross-repository patch in wiredchaos/agentropolis covering
+#   SOVEREIGNTY + ATG + ONTOLOGY (+ PAY-PROTOCOL after its audit).
+#
+# Notes:
+#   - The live registry file was not fetchable from the audit environment
+#     (wiredchaos/agentropolis returned 404 here).
+#   - Maintainers must merge this proposal into the real registry structure.
+#   - Do not copy identity runtime ownership into ONTOLOGY.
+#   - Descriptive Agent/Person vocabulary seeds are not identity authority.
+
+# ---------------------------------------------------------------------------
+# Unified diff (illustrative). Adjust indentation/keys to match the live file.
+# ---------------------------------------------------------------------------
+#
+# --- a/governance/repository-registry.yaml
+# +++ b/governance/repository-registry.yaml
+# @@
+#    - repository: wiredchaos/AGENTROPOLIS-ONTOLOGY
+# -    status: <previous-or-inferred>
+# -    domains: [identity, agents, ...]   # if previously over-claimed
+# +    status: EMPTY-SHELL
+# +    status_scope: identity_authority
+# +    ontology_status: INCUBATING
+# +    actual_role:
+# +      - documentation-only package
+# +      - schema-only package
+# +      - knowledge_ontology
+# +      - regulated_digital_money_vocabulary
+# +    domains:
+# +      identity_authority: EMPTY-SHELL
+# +      knowledge_ontology: INCUBATING
+# +      regulated_digital_money: INCUBATING
+# +      descriptive_agent_metadata: UNMERGED_SCAFFOLD
+# +    canonical: false
+# +    identity_authority: false
+# +    owns:
+# +      - compiled_knowledge_doctrine
+# +      - second_brain_ontology_doctrine
+# +      - regulated_digital_money_v1_docs_and_schema_stub
+# +      - source_evidence_schema
+# +    does_not_own:
+# +      - canonical_identity_authority
+# +      - principal_registry
+# +      - agent_identity_registry
+# +      - credential_service
+# +      - session_management
+# +      - mandate_engine
+# +      - delegation_engine
+# +      - revocation_bus
+# +      - wallet_identity_lifecycle
+# +      - payment_execution
+# +      - sovereignty_model_routing
+# +    evidence:
+# +      commit: 4b518f5a2b5bdc83559e198ec32c317ef989c088
+# +      audit: wiredchaos/AGENTROPOLIS-ONTOLOGY/docs/audits/ONTOLOGY-IDENTITY-EVIDENCE-AUDIT.md
+# +      machine: wiredchaos/AGENTROPOLIS-ONTOLOGY/governance/ontology-identity-evidence.yaml
+# +    confidence: high
+# +    codex_required_next: true
+# +    notes: >
+# +      ONTOLOGY is not the identity authority. Partial descriptive seeds
+# +      (Agent/Person/relationship prose; unmerged agent.schema.json;
+# +      unbound SpendingAuthority.principal) must be coordinated to avoid
+# +      semantic drift, but do not block creating a dedicated Identity
+# +      Authority. Next: PAY-PROTOCOL audit; then assemble hub registry.
+
+proposed_entry:
+  repository: wiredchaos/AGENTROPOLIS-ONTOLOGY
+  commit_reviewed: 4b518f5a2b5bdc83559e198ec32c317ef989c088
+  status: EMPTY-SHELL
+  status_scope: identity_authority
+  ontology_status: INCUBATING
+  canonical: false
+  identity_authority: false
+  confidence: high
+  actual_role:
+    - documentation-only package
+    - schema-only package
+    - knowledge_ontology
+    - regulated_digital_money_vocabulary
+  domains:
+    identity_authority: EMPTY-SHELL
+    knowledge_ontology: INCUBATING
+    regulated_digital_money: INCUBATING
+    descriptive_agent_metadata: UNMERGED_SCAFFOLD
+  owns:
+    - compiled_knowledge_doctrine
+    - second_brain_ontology_doctrine
+    - regulated_digital_money_v1_docs_and_schema_stub
+    - source_evidence_schema
+  does_not_own:
+    - canonical_identity_authority
+    - principal_registry
+    - agent_identity_registry
+    - credential_service
+    - session_management
+    - mandate_engine
+    - delegation_engine
+    - revocation_bus
+    - wallet_identity_lifecycle
+    - payment_execution
+    - sovereignty_model_routing
+  identity_entity_seeds:
+    present: partial_descriptive_only
+    blocking_for_new_identity_authority: false
+    items:
+      - knowledge_entity_labels_person_agent_relationship
+      - claim_holder_slug_paths
+      - spending_authority_principal_prose_field
+      - unmerged_agent_schema_owners_strings
+  recommended_consumers:
+    identity_authority_runtime: supplies_principal_and_agent_ids_for_ontology_refs
+    atg_protocol: supplies_normative_identity_message_schemas
+    pay_protocol: consumes_money_ontology_not_root_identity
+  evidence:
+    audit_markdown: docs/audits/ONTOLOGY-IDENTITY-EVIDENCE-AUDIT.md
+    remediation_plan: docs/audits/ONTOLOGY-IDENTITY-REMEDIATION-PLAN.md
+    machine_evidence: governance/ontology-identity-evidence.yaml
+  unmerged_evidence:
+    - ref: origin/copilot/agentropolis-ontology-structure
+      commit: 2b23c055c3601de3fef3537a207d225bd89809e8
+      note: descriptive agent/district schemas; README denies IdP/runtime
+    - ref: origin/ontology-economic-layer
+      commit: 3c7567f295943e67cc70ad9f271578eec05a1d8e
+      note: capital/value schemas with opaque owner_ref only
+  risks:
+    - misclassification_as_identity_entity_home
+    - semantic_drift_on_agent_and_principal_words
+    - spending_authority_principal_unbound
+    - treating_unmerged_scaffold_as_main_canon
+  remediation:
+    priority: P0
+    next: audit_pay_protocol_then_assemble_hub_registry_then_designate_identity_authority
+  codex_required_next: true
+  hub_assembly_gate:
+    do_not_finalize_from_single_pr: true
+    include_with:
+      - wiredchaos/AGENTROPOLIS-SOVEREIGNTY
+      - wiredchaos/AGENTROPOLIS-ATG  # draft PR #8 — not final alone
+      - wiredchaos/AGENTROPOLIS-PAY-PROTOCOL  # after audit
+    target_repo: wiredchaos/agentropolis
+
+# If the registry uses a map keyed by repository slug, equivalent form:
+#
+# repositories:
+#   AGENTROPOLIS-ONTOLOGY:
+#     <<: *proposed_entry_fields_above
