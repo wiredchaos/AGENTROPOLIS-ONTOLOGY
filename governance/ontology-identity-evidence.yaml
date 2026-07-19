@@ -1,0 +1,402 @@
+# ONTOLOGY Identity Authority Evidence — machine-readable audit record
+# Audit mode only. Do not treat this file as a live registry mutation.
+# Proposed registry patch is separate and must not be auto-applied.
+
+repository: wiredchaos/AGENTROPOLIS-ONTOLOGY
+commit_reviewed: 4b518f5a2b5bdc83559e198ec32c317ef989c088
+commit_reviewed_short: 4b518f5
+audit_date_utc: "2026-07-19"
+audit_mode: read_only_evidence
+auditor: cursor-cloud-agent
+audit_program: phase-3-federation-hardening
+cloud_agent_url: https://cursor.com/agents/bc-e330c126-dfc8-429e-b045-c9010d6f31dd
+
+controlling_authority:
+  - wiredchaos/agentropolis/AGENTROPOLIS-CANON.yaml
+  - wiredchaos/agentropolis/docs/FEDERATION-HARDENING-V1.md
+  - wiredchaos/agentropolis/governance/repository-registry.yaml
+  - wiredchaos/agentropolis/issues/85
+controlling_authority_fetchable_in_audit_env: false
+
+owners_found:
+  github_owner: wiredchaos
+  owning_user_name: Neuro MetaX
+  owning_user_email: chaoswired@gmail.com
+  codeowners_file: absent
+  maintainers_file: absent
+
+actual_role:
+  - documentation-only package
+  - schema-only package
+  - knowledge_ontology
+  - regulated_digital_money_vocabulary
+
+not_actual_role:
+  - canonical identity authority
+  - identity entity schema home (normative)
+  - credential service
+  - principal registry
+  - agent identity registry
+  - mandate engine
+  - authorization engine
+  - policy decision point
+  - wallet identity layer
+  - payment execution runtime
+  - sovereignty router
+
+proposed_status: EMPTY-SHELL
+proposed_status_scope: identity_authority_domain
+ontology_status_informational: INCUBATING
+confidence: high
+confidence_numeric: 0.93
+confidence_rationale: >
+  Main branch has 12 tracked files: doctrine docs plus two JSON Schemas
+  (source evidence and regulated-digital-money envelope). No package
+  manifest, runtime, API, tests, CI, principal/credential/mandate schemas,
+  or identity enforcement. Unmerged structure branch adds descriptive
+  agent/district metadata schemas that explicitly deny IdP/runtime scope.
+  Partial vocabulary seeds do not constitute an identity authority.
+
+prior_non_candidates:
+  - repository: wiredchaos/AGENTROPOLIS-SOVEREIGNTY
+    identity_status: EMPTY-SHELL
+    actual_role: provider_model_sovereignty_router
+  - repository: wiredchaos/AGENTROPOLIS-ATG
+    identity_status: EMPTY-SHELL
+    actual_role: trust_doctrine_schemas_prototype
+    note: draft PR #8 open; not final registry decision alone
+
+control_question:
+  question: >
+    Does ONTOLOGY already contain principal, agent, relationship, credential,
+    or authority schemas that would make a dedicated Identity Authority
+    duplicate entity models?
+  answer: no_normative_identity_entity_suite
+  detail: >
+    Knowledge-graph labels and an unmerged descriptive Agent schema exist.
+    SpendingAuthority names a principal field in prose only. No credential,
+    session, mandate, delegation, wallet-identity, or root authority schemas
+    exist. Safe to designate/create Identity Authority after PAY audit, with
+    coordination to prevent semantic drift on shared words (Agent, principal).
+
+entities:
+  human_principal:
+    status: missing
+    notes: SpendingAuthority docs list principal as required field name only
+    path_prose: docs/regulated-digital-money-ontology-v1.md#SpendingAuthority
+  organization:
+    status: documentation_slug_only
+    path: docs/obsidian-gbrain-intelligence-layer.md
+    example: companies/<slug>
+  agent:
+    status: missing_on_main
+    knowledge_label: docs/agentropolis-second-brain-ontology.md
+    unmerged_schema:
+      ref: origin/copilot/agentropolis-ontology-structure
+      commit: 2b23c055c3601de3fef3537a207d225bd89809e8
+      path: schemas/agent.schema.json
+      identity_binding: false
+      owners_field: optional_string_array
+  service_account:
+    status: missing
+  wallet:
+    status: missing
+    notes: cross-repo map forbids raw wallet keys in MCP consumers
+  device:
+    status: missing
+  session:
+    status: missing
+  application:
+    status: documentation_only
+    path: docs/regulated-digital-money-ontology-v1.md
+    notes: PaymentIntent requestedBy may be Application in prose
+  district:
+    status: missing_on_main
+    unmerged_schema:
+      path: schemas/district.schema.json
+      ref: origin/copilot/agentropolis-ontology-structure
+  role:
+    status: string_field_only_unmerged
+    path: schemas/agent.schema.json#role
+  policy:
+    status: documentation_and_unmerged_schema
+    paths:
+      - docs/COMPILED_KNOWLEDGE_ARCHITECTURE.md
+      - origin/copilot/.../schemas/policy.schema.json
+  mandate:
+    status: missing
+  delegation:
+    status: missing
+    notes: delegated authority assigned to AGENT SEATBELTS NMX in money docs
+  capability:
+    status: domain_different
+    paths:
+      - schemas/regulated-digital-money-v1.schema.json#capability
+      - origin/copilot/.../schemas/skill.schema.json
+    notes: money capability status / skill callable capability — not principal grants
+  grant:
+    status: missing
+  credential:
+    status: missing
+    notes: SECURITY.md on structure branch warns against committing credentials
+  attestation:
+    status: missing
+  relationship:
+    status: documentation_only
+    paths:
+      - docs/obsidian-gbrain-intelligence-layer.md
+      - docs/COMPILED_KNOWLEDGE_ARCHITECTURE.md
+    notes: knowledge/claim relationships, not authority edges
+  authority:
+    status: documentation_only
+    paths:
+      - docs/regulated-digital-money-ontology-v1.md#SpendingAuthority
+      - docs/COMPILED_KNOWLEDGE_ARCHITECTURE.md
+    notes: domain spending authority / policy authority level — not Identity Authority
+  consent:
+    status: missing
+  revocation:
+    status: documentation_only
+    path: docs/regulated-digital-money-ontology-v1.md
+  receipt:
+    status: partial_unrelated
+    paths:
+      - schemas/source.schema.json#receipt_id
+      - docs/regulated-digital-money-ontology-v1.md#Event model
+    notes: not agentropolis.receipt.v1 identity receipts
+  audit_event:
+    status: documentation_only
+
+entity_distinctions_implemented: false
+entity_distinctions_missing:
+  - human_principal
+  - organization
+  - agent_as_authenticated_subject
+  - wallet_as_non_root_identifier_lifecycle
+  - session
+  - role
+  - capability_as_grant
+  - mandate
+  - delegation
+  - credential
+  - attestation
+
+schemas_on_main:
+  - path: schemas/source.schema.json
+    purpose: immutable knowledge source metadata
+  - path: schemas/regulated-digital-money-v1.schema.json
+    purpose: payment intent + capability + optional policyDecision
+    identity_fields:
+      requestedBy:
+        type: string
+        constrained_to_principal_or_agent: false
+
+runtime_signals:
+  package_manifest: absent
+  src_directory: absent
+  api_handlers: absent
+  database_migrations: absent
+  tests: absent
+  ci_workflows: absent
+  tracked_file_count_main: 12
+
+control_locations:
+  authentication:
+    path: null
+  principal_resolution:
+    path: null
+  agent_resolution:
+    path: null
+  mandate_lookup:
+    path: null
+  capability_evaluation:
+    path: null
+    notes: money capability.status is declarative enum only
+  policy_decision:
+    path: schemas/regulated-digital-money-v1.schema.json
+    symbol: policyDecision
+    domain: regulated_digital_money
+    enforced: false
+  execution_permission:
+    path: null
+  receipt_emission:
+    path: null
+  audit_emission:
+    path: null
+  revocation_propagation:
+    path: null
+
+missing_controls:
+  - human_principal_binding
+  - organization_principals
+  - agent_identity_registry
+  - accountable_human_for_every_agent
+  - credential_issue_rotate_revoke
+  - session_lifecycle
+  - device_binding
+  - mandate_issue_and_cancel
+  - bounded_revocable_expiring_delegation
+  - conflicting_mandate_hard_stop
+  - emergency_human_override
+  - wallet_link_unlink_proof
+  - nonce_replay_protection
+  - revocation_propagation_bus
+  - durable_append_only_identity_audit
+  - agentropolis.receipt.v1
+  - agentropolis.audit.v1
+  - agentropolis.revocation.v1
+  - identity_conformance_tests
+
+semantic_drift_risks:
+  - id: SD1
+    severity: P1
+    title: Agent word collision
+    locations:
+      - docs/agentropolis-second-brain-ontology.md
+      - origin/copilot/agentropolis-ontology-structure:schemas/agent.schema.json
+    mitigation: descriptive ontology Agent references identity agent_id
+  - id: SD2
+    severity: P0
+    title: Unbound SpendingAuthority.principal
+    location: docs/regulated-digital-money-ontology-v1.md
+    mitigation: bind to Identity Authority principal_id once designated
+  - id: SD3
+    severity: P1
+    title: Claim holder slugs mistaken for auth principals
+    location: docs/obsidian-gbrain-intelligence-layer.md
+    mitigation: document attribution-vs-authentication boundary
+
+unmerged_branches_inspected:
+  - name: origin/copilot/agentropolis-ontology-structure
+    commit: 2b23c055c3601de3fef3537a207d225bd89809e8
+    identity_provider: false
+    schemas:
+      - schemas/agent.schema.json
+      - schemas/district.schema.json
+      - schemas/policy.schema.json
+      - schemas/skill.schema.json
+      - schemas/memory.schema.json
+      - schemas/workflow.schema.json
+      - schemas/event.schema.json
+  - name: origin/ontology-economic-layer
+    commit: 3c7567f295943e67cc70ad9f271578eec05a1d8e
+    notes: owner_ref opaque strings only
+
+dependencies:
+  - name: json_schema_draft_2020_12
+    classification: schema_tooling
+  - name: privy
+    classification: not_present
+  - name: clerk
+    classification: not_present
+  - name: auth0
+    classification: not_present
+  - name: firebase_auth
+    classification: not_present
+  - name: supabase_auth
+    classification: not_present
+  - name: did_vc_stack
+    classification: not_present
+  - name: wallet_sdk
+    classification: not_present
+
+tests:
+  suite_path: null
+  executed: false
+  passed: 0
+  failed: 0
+  matrix:
+    invalid_login: missing
+    expired_session: missing
+    revoked_session: missing
+    invalid_wallet_signature: missing
+    replayed_nonce: missing
+    unauthorized_agent: missing
+    capability_denial: missing
+    expired_delegation: missing
+    revoked_mandate: missing
+    conflicting_mandate: missing
+    emergency_halt: missing
+    wallet_compromise: missing
+    provider_outage: missing
+    database_outage: missing
+    rollback: missing
+
+scores:
+  human_accountability: 0
+  identity_clarity: 1
+  wallet_separation: 0
+  revocation: 0
+  authorization_boundaries: 1
+  portability: 3
+  auditability: 1
+  recovery: 0
+  privacy: 2
+  test_coverage: 0
+  operational_readiness: 0
+
+risks:
+  - id: R1
+    severity: P0
+    title: Misclassification as identity entity home or authority
+    impact: Federation may skip creating Identity Authority or fork models incorrectly
+  - id: R2
+    severity: P0
+    title: SpendingAuthority.principal unbound to normative identity types
+  - id: R3
+    severity: P1
+    title: Semantic drift on Agent / relationship vocabulary
+  - id: R4
+    severity: P1
+    title: Hub registry and Issue #85 not fetchable; single-PR patches not final
+  - id: R5
+    severity: P2
+    title: Unmerged structure-branch schemas could be mistaken for main canon
+
+remediation_priorities:
+  - priority: P0
+    actions:
+      - register_identity_status_EMPTY-SHELL
+      - forbid_competing_principal_credential_schemas_in_ontology
+      - do_not_finalize_registry_from_atg_pr_8_alone
+  - priority: P1
+    actions:
+      - audit_AGENTROPOLIS-PAY-PROTOCOL
+      - assemble_cross_repo_registry_patch_in_agentropolis
+      - designate_or_create_identity_authority
+      - bind_money_and_descriptive_schemas_to_identity_ids
+  - priority: P2
+    actions:
+      - readme_identity_boundary_statement
+      - document_claim_holder_vs_principal
+  - priority: P3
+    actions:
+      - decide_structure_and_economic_branch_fates
+      - attach_summary_to_issue_85_when_hub_accessible
+
+sibling_candidates_for_identity_audit:
+  - wiredchaos/AGENTROPOLIS-PAY-PROTOCOL
+  # already audited:
+  - wiredchaos/AGENTROPOLIS-SOVEREIGNTY
+  - wiredchaos/AGENTROPOLIS-ATG
+
+sequence:
+  - done: AGENTROPOLIS-SOVEREIGNTY
+  - done: AGENTROPOLIS-ATG
+  - done: AGENTROPOLIS-ONTOLOGY
+  - next: AGENTROPOLIS-PAY-PROTOCOL
+  - then: assemble_hub_registry_patch
+  - then: designate_or_create_identity_authority
+  - then: implement_runtime_against_atg_normative_contracts
+
+hub_assembly_gate:
+  do_not_merge_atg_pr_8_as_final_registry_decision: true
+  reason: cross_repository_registry_patch_must_be_assembled_in_wiredchaos/agentropolis
+
+codex_required_next: true
+codex_required_next_target: wiredchaos/AGENTROPOLIS-PAY-PROTOCOL
+
+artifacts:
+  evidence_audit: docs/audits/ONTOLOGY-IDENTITY-EVIDENCE-AUDIT.md
+  remediation_plan: docs/audits/ONTOLOGY-IDENTITY-REMEDIATION-PLAN.md
+  proposed_registry_patch: docs/audits/ONTOLOGY-IDENTITY-REGISTRY-PATCH.proposed.yaml
